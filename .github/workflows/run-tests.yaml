@@ -1,0 +1,12 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches: ['*']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run unit tests
+        run: echo RUN

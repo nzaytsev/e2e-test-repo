@@ -24,4 +24,4 @@ jobs:
     concurrency: production
     steps:
       - name: Run unit tests
-        run: sleep 10000 exit 0
+        run: sleep 10000 && exit 0

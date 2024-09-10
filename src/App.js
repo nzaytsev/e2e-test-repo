@@ -15,6 +15,7 @@ function App() {
         {/* commit for tag3 */}
         {/* commit for tag4 */}
         {/* commit for tag5 */}
+        {/* commit for testing autolinks */}
         <a
           className="App-link"
           href="https://reactjs.org"

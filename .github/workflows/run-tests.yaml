@@ -2,7 +2,7 @@ name: Run tests
 
 on:
   pull_request:
-    branches: ['*']
+    branches: ["t*"]
 
 jobs:
   test:

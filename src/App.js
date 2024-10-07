@@ -13,6 +13,13 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        {/* commit for tag */}
+        {/* commit for tag1 */}
+        {/* commit for tag2 */}
+        {/* commit for tag3 */}
+        {/* commit for tag4 */}
+        {/* commit for tag5 */}
+        {/* commit for testing autolinks */}
         <a
           className="App-link"
           href="https://reactjs.org"

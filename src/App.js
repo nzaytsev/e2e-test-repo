@@ -2,6 +2,8 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  // autolink test 2
+  // autolink test gh-55
   return (
     <div className="App">
       <header className="App-header">

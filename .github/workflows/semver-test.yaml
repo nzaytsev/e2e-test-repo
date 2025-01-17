@@ -19,18 +19,19 @@ jobs:
               with:
                   node-version: 18
                   registry-url: https://registry.npmjs.org/
-            - name: Parse semver string
-              id: semver_parser 
-              uses: booxmedialtd/ws-action-parse-semver@v1
-              with:
-                input_string: ${{ github.ref_name }}
-                version_extractor_regex: '\/v(.*)$'
+            # - name: Parse semver string
+            #   id: semver_parser 
+            #   uses: booxmedialtd/ws-action-parse-semver@v1
+            #   with:
+            #     input_string: ${{ github.ref_name }}
+            #     version_extractor_regex: '\/v(.*)$'
             - name: Publish Package as Public
               run: yarn publish --access=public --non-interactive
               env:
-                echo "v${{ steps.semver_parser.outputs.major }}"
-                echo "v${{ steps.semver_parser.outputs.minor }}"
-                echo "v${{ steps.semver_parser.outputs.patch }}"
-                echo "v${{ steps.semver_parser.outputs.prerelease }}"
-                echo "v${{ steps.semver_parser.outputs.build }}"
-                echo "v${{ steps.semver_parser.outputs.fullversion }}"
+                echo ${{ github.ref_name }}
+                # echo "v${{ steps.semver_parser.outputs.major }}"
+                # echo "v${{ steps.semver_parser.outputs.minor }}"
+                # echo "v${{ steps.semver_parser.outputs.patch }}"
+                # echo "v${{ steps.semver_parser.outputs.prerelease }}"
+                # echo "v${{ steps.semver_parser.outputs.build }}"
+                # echo "v${{ steps.semver_parser.outputs.fullversion }}"

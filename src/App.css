@@ -4,7 +4,7 @@
 
 .App-logo {
   height: 48vmin;
-  pointer-events: none;
+  pointer-events: all;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -36,3 +36,4 @@
     transform: rotate(360deg);
   }
 }
+/* change */

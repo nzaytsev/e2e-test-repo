@@ -64,7 +64,7 @@ jobs:
       GIJ_ADDON_KEY: ${{ vars.GIJ_ADDON_KEY }}
     steps:
       - name: echo
-        run: echo "$BASE_URL $GIJ_ENVIRONMENT"
+        run: echo -e "$BASE_URL $GIJ_ENVIRONMENT"
 
       - name: Forge install
         if: ${{ inputs.willInstall }}

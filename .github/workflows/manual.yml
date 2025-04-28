@@ -63,6 +63,28 @@ jobs:
       GIJ_ENVIRONMENT: ${{ inputs.environment }}
       GIJ_ADDON_KEY: ${{ vars.GIJ_ADDON_KEY }}
     steps:
+      - name: Set baseUrl dynamically
+        id: set_baseurl
+        run: |
+          if [ -n "${{ inputs.baseUrl }}" ]; then
+            echo "BASE_URL=${{ inputs.baseUrl }}" >> $GITHUB_ENV
+          else
+            case "${{ inputs.environment }}" in
+              dev)
+                echo "BASE_URL=" >> $GITHUB_ENV
+                ;;
+              staging)
+                echo "BASE_URL=staging.url" >> $GITHUB_ENV
+                ;;
+              production)
+                echo "BASE_URL=prod.url" >> $GITHUB_ENV
+                ;;
+              *)
+                echo "Unknown environment: ${{ inputs.environment }}"
+                exit 1
+                ;;
+            esac
+          fi
       - name: echo
         run: echo -e "$BASE_URL $GIJ_ENVIRONMENT"
 

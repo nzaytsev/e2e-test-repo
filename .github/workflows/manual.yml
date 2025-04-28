@@ -60,11 +60,11 @@ jobs:
     env:
       GIJ_APP_ID: ${{ vars.GIJ_APP_ID }}
       BASE_URL: ${{ inputs.baseUrl || vars.BASE_URL }}
-      GIJ_ENVIRONMENT: ${{ vars.GIJ_ENVIRONMENT }}
+      GIJ_ENVIRONMENT: ${{ inputs.environment }}
       GIJ_ADDON_KEY: ${{ vars.GIJ_ADDON_KEY }}
     steps:
-      # - name: echo
-      #   run: echo "${}"
+      - name: echo
+        run: echo "${BASE_URL} ${GIJ_ENVIRONMENT}"
 
       - name: Forge install
         if: ${{ inputs.willInstall }}

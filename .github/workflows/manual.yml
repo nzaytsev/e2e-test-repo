@@ -50,7 +50,7 @@ on:
         required: false
         type: string
       baseUrl:
-        description: "Base url for the installation. Used staging baseUrl by default"
+        description: "Base url for the installation. Used staging or prod baseUrl by default (depends on environment)"
         required: false
         type: string
 

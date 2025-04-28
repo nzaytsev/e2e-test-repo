@@ -70,7 +70,7 @@ jobs:
             echo "BASE_URL=${{ inputs.baseUrl }}" >> $GITHUB_ENV
           else
             case "${{ inputs.environment }}" in
-              dev)
+              development)
                 echo "BASE_URL=" >> $GITHUB_ENV
                 ;;
               staging)

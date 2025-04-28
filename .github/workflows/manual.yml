@@ -1,0 +1,76 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual
+run-name: ${{inputs.appNick}}
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      appNick:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: "App Nick"
+        # Default value if no value is explicitly provided
+        default: "GitCloud"
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: choice
+        options:
+          - GitCloud
+          - DevInfo
+      willDeploy:
+        description: "Run `forge deploy`"
+        required: true
+        type: boolean
+        default: true
+      willInstall:
+        description: "Run `forge install`. Site url must be provided"
+        required: true
+        type: boolean
+        default: false
+      willUpgrade:
+        description: "`forge install` will be executed with --upgrade flag"
+        required: false
+        type: boolean
+        default: false
+      environment:
+        description: "Forge environment"
+        required: false
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+        default: staging
+      siteUrl:
+        description: "Site url for the installation"
+        required: false
+        type: string
+      baseUrl:
+        description: "Base url for the installation. Used staging baseUrl by default"
+        required: false
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      GIJ_APP_ID: ${{ vars.GIJ_APP_ID }}
+      BASE_URL: ${{ inputs.baseUrl || vars.BASE_URL }}
+      GIJ_ENVIRONMENT: ${{ vars.GIJ_ENVIRONMENT }}
+      GIJ_ADDON_KEY: ${{ vars.GIJ_ADDON_KEY }}
+    steps:
+      # - name: echo
+      #   run: echo "${}"
+
+      - name: Forge install
+        if: ${{ inputs.willInstall }}
+        run: |
+          COMMAND="forge install --non-interactive -s ${{ inputs.siteUrl }} -p Jira --confirm-scopes -e ${{ inputs.environment }}"
+          if [ "${{ inputs.willUpgrade }}" = "true" ]; then
+            COMMAND="$COMMAND --upgrade"
+          fi
+          echo "Running command: $COMMAND"
